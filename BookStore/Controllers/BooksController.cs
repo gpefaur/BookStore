@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BookStore.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace BookStore.Controllers
+{
+    public class BooksController : Controller
+    {
+        private Book book = new Book();
+        public IActionResult Index()
+        {
+            
+            return View();
+        }
+
+        public IActionResult Details()
+        {
+            // Here would be the code to fetch the books details from the DB
+            Book book = new Book()
+            {
+                Id = 1,
+                Title = "The man in the high castle",
+                Genre = "Alternative future",
+                Price = 45,
+                PublishDate = new System.DateTime(2012, 04, 23),
+                Authors = new List<string> {"Philip K. Dick"}
+            };
+
+            return View(book);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                // Logic to add the book to DB
+                return RedirectToAction("Index");
+            }
+            return View(book);
+        }
+    }
+}
