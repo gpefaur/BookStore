@@ -17,9 +17,21 @@ namespace BookStore.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Here I come to describe myself";
 
-            return View();
+            var about = new About()
+            {
+                Id = 1,
+                Name = "German",
+                Surname = "Pefaur",
+                Age = 29,
+                Address = "Avellaneda 1000",
+                Country = "Argentina", 
+                DateOfBirth = new System.DateTime(1990, 07, 04),
+
+            };
+
+            return View(about);
         }
 
         public IActionResult Contact()
