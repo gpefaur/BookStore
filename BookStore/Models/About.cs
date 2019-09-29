@@ -10,7 +10,7 @@ namespace BookStore.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Name")]
+        [Display(Name = "My name")]
         [Required]
         [StringLength(maximumLength: 50, ErrorMessage = "The name length should be between 2 and 50.", MinimumLength = 2)]
         public string Name { get; set; }

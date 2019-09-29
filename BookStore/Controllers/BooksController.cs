@@ -12,7 +12,7 @@ namespace BookStore.Controllers
         private Book book = new Book();
         public IActionResult Index()
         {
-            
+            ViewBag.Lista = book.GetBooks();
             return View();
         }
 
@@ -26,8 +26,15 @@ namespace BookStore.Controllers
                 Genre = "Alternative future",
                 Price = 45,
                 PublishDate = new System.DateTime(2012, 04, 23),
-                Authors = new List<string> {"Philip K. Dick"}
+                Authors = "Philip K. Dick"
             };
+
+            return View(book);
+        }
+
+        public IActionResult Edit(int id)
+        {
+           book = book.GetUniqueBook(id);
 
             return View(book);
         }
@@ -39,14 +46,17 @@ namespace BookStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Book book)
+        public IActionResult Save(Book eBook)
         {
             if (ModelState.IsValid)
             {
                 // Logic to add the book to DB
-                return RedirectToAction("Index");
+                var response = eBook.Save();
+                if (response) return RedirectToAction("Index");
+
             }
-            return View(book);
+
+            return Json(eBook);
         }
     }
 }

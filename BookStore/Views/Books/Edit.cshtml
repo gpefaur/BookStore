@@ -1,11 +1,12 @@
 ﻿@model BookStore.Models.Book
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <h1>Create</h1>
-@using (Html.BeginForm("Save", "Books", FormMethod.Post)) { 
+@using (Html.BeginForm("Save", "Books", FormMethod.Post))
+{
     <div>
         <h4>Book</h4>
         <hr />
@@ -49,7 +50,7 @@
     </div>
     <hr />
     <div>
-        <div class="text-right" >
+        <div class="text-right">
             <button class="btn btn-primary" asp-action="Save" asp-controller="Books">Save</button>
             <a class="btn btn-danger" asp-action="Index">Back to List</a>
         </div>
